@@ -1,0 +1,39 @@
+{
+  "name": "mqttbridge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf build && tsc",
+    "start": "ts-node src/",
+    "start:docker": "yarn build && yarn start",
+    "start:dev": "ts-node-dev --respawn src/"
+  },
+  "dependencies": {
+    "axios": "^1.2.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mqtt": "^4.3.7",
+    "sparkplug-client": "^3.2.2",
+    "tls": "^0.0.1"
+  },
+  "devDependencies": {
+    "@nortech/sparkplug-client": "^3.4.0",
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.15",
+    "@types/node": "^18.11.15",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "eslint": "^8.29.0",
+    "prettier": "^2.8.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  },
+  "overrides": {
+    "glob-parent": "^6.0.2",
+    "glob-steam": "^7.0.0",
+    "help-me": "^4.2.0"
+  }
+}

@@ -102,4 +102,7 @@
   },
   "include": ["src/**/*", "src/*.d.ts"],
   "exclude": ["node_modules"],
+  "ts-node": {
+    "files": true
+  }
 }

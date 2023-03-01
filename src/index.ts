@@ -25,20 +25,19 @@ const options: ISparkplugClientOptions ={
 
 const client = sparkplug.newClient(options);
 
-console.log(client);
+client.on('birth', () => {
+   client.publishNodeBirth(getNodeBirth(), null);
+});
 
-// const client =  mqtt.connect(options);
+client.on('connection', () => {
+   console.log('Client is connecting!!');
+});
 
-// client.connect();
+client.on('error', (error) => {
+   console.error('Client receive error:', error);
+});
 
-// client.on('connect', () =>{
-//  console.log('MQTT client connected!!!');
-// });
-
-// client.on('error', (error: any) => {
-//     console.log(`MQTT client error: ${error}`);
-// });
-
-// client.on('disconnect', () => {
-//     console.log('MQTT client disconnected.');
-// });
+client.on('close', () => {
+   console.log("Client receive 'close' event!!!");
+  // client.stop();
+});

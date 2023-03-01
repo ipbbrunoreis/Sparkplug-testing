@@ -1,26 +1,26 @@
 import sparkplug, {ISparkplugClientOptions}  from '@nortech/sparkplug-client';
 
-const options: ISparkplugClientOptions ={  
-    serverUrl: process.env.BROKER_HOST +':'+ process.env.SSL_PORT,
-    clientId: process.env.TEST_CLIENT._id,
-    username: '',
-    password: '',
+  const options: ISparkplugClientOptions = {
+    serverUrl: `${process.env.API_EPO_URL}:${process.env.SSL_PORT}`,
+    clientId: testClient._id,
+    username: 'test',
+    password: 'test',
     groupId: '',
     edgeNode: '',
-    keepalive: 3600 * process.env.KEEPALIVE,
+    keepalive: Number(process.env.KEEPALIVE) * 3600,
     publishDeath: true,
-    version: process.env.SOURCE_TYPE,
-    mqttOptions:{
-        port: process.env.SSL_PORT,
-        host: process.env.BROKER_HOST,
-        key: '',
-        cert: '',
-        ca: '',
-        protocol: process.env.SOURCE_TYPE,
-        protocolId: process.env.SOURCE_TYPE_ID,
-        protocolVersion: process.env.SOURCE_TYPE_VERSION,
-        rejectUnauthorized: true,
-    }
+    version: process.env.CLIENT_VERSION,
+    mqttOptions: {
+      port: Number(process.env.SSL_PORT),
+      host: process.env.BROKER_HOST,
+      key: fs.readFileSync(__dirname + '/ssl/client-key.pem'),
+      cert: fs.readFileSync(__dirname + '/ssl/client-cert.pem'),
+      ca: fs.readFileSync(__dirname + '/ssl/ca.pem'),
+      protocol: 'mqtts',
+      protocolId: process.env.SOURCE_TYPE_ID,
+      protocolVersion: Number(process.env.SOURCE_TYPE_VERSION),
+      rejectUnauthorized: false,
+    },
 } 
 
 const client = sparkplug.newClient(options);
